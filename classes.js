@@ -12,57 +12,6 @@ function Polygon(a,b,c,d){
 }
 
 
-function Equation(str){
-	//sin(x)+cos(x)*5
-	
-
-	this.setup = function(str){
-		this.str = str;
-		this.str = this.str.replace(/sin/g,"Math.sin")
-		this.str = this.str.replace(/cos/g,"Math.cos")
-		this.str = this.str.replace(/tan/g,"Math.tan")
-		this.str = this.str.replace(/pi/g,"Math.PI")
-		this.str = this.str.replace(/sqrt/g,"Math.sqrt")
-
-		for(var i = 0; i<this.str.length; i++){//Math.pow
-			if(this.str.charAt(i) == "^" && i != 0 && i != this.str.length-1){
-				//get base--basically run left until ) or operand(+-*/)
-				var startIndex = 0;
-				for(var j=i-1;j>=0;j--){
-					if(["(","+","-","*","/","^"].indexOf(this.str.charAt(j)) > -1){
-						startIndex = j+1;
-						break;
-					}
-				}
-				var endIndex = str.length;
-				for(var j=i+1;j<this.str.length;j++){
-
-					if([")","+","-","*","/","^"].indexOf(this.str.charAt(j)) > -1){
-						endIndex = j;
-						break;
-					}
-
-
-				}
-
-				var base = this.str.slice(startIndex,i)
-				var exponent = this.str.slice(i+1,endIndex)
-				this.str = this.str.slice(0,startIndex) + "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
-
-
-
-			}
-		}
-
-
-	}
-	this.setup(str);
-
-}
-
-
-
-
 
 function shadeColor1(color, percent) { 
     var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, G = (num >> 8 & 0x00FF) + amt, B = (num & 0x0000FF) + amt;
@@ -126,6 +75,82 @@ function point3d(x,y,z){
 	}
 
 }
+
+
+
+function Equation(str){
+	//sin(x)+cos(x)*5
+	
+
+	this.setup = function(str){
+		this.str = str;
+		this.str = this.str.replace(/sin/g,"Math.sin")
+		this.str = this.str.replace(/cos/g,"Math.cos")
+		this.str = this.str.replace(/tan/g,"Math.tan")
+		this.str = this.str.replace(/pi/g,"Math.PI")
+		this.str = this.str.replace(/sqrt/g,"Math.sqrt")
+
+		for(var i = 0; i<this.str.length; i++){//Math.pow
+			if(this.str.charAt(i) == "^" && i != 0 && i != this.str.length-1){
+				//get base--basically run left until ) or operand(+-*/)
+				var startIndex = 0;
+				for(var j=i-1;j>=0;j--){
+					if(["(","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
+						startIndex = j+1;
+						break;
+					}
+				}
+				var endIndex = str.length;
+				for(var j=i+1;j<this.str.length;j++){
+
+					if([")","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
+						endIndex = j;
+						break;
+					}
+
+
+				}
+
+				var base = this.str.slice(startIndex,i)
+				var exponent = this.str.slice(i+1,endIndex)
+				this.str = this.str.slice(0,startIndex) + "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
+
+
+
+			}
+		}
+
+
+	}
+	this.setup(str);
+
+	this.evaluate = function(x,y){
+		var z = -1;
+		//document.getElementById("errorPlace").innerHTML = this.str;
+		try{
+			eval(this.str);
+		}catch(err){
+			//console.log(err);
+			
+			/*if(document.getElementById("errorPlace").innerHTML != err){
+				console.log(err);
+				document.getElementById("errorPlace").innerHTML = err;
+			}*/
+
+			//document.getElementById("errorPlace").innerHTML = this.str;
+		}
+
+		return z;
+	}
+
+
+
+}
+
+
+
+
+
 
 function Keyboard(){
 	this.keysDown = [];

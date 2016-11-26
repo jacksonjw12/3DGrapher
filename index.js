@@ -6,7 +6,8 @@ var funcStep = 1;
 var func = [
 
 ]
-
+var equationString = "z=0"
+var eq = new Equation(equationString);
 
 function getFunctionPoints(range, step){
 	func = [];
@@ -15,7 +16,14 @@ function getFunctionPoints(range, step){
 	for(var y = -range; y<range; y+=step){
 		var row = []
 		for(var x = -range; x<range; x+=step){
-			row.push(new point3d(x,y,equation1(x,y)))
+
+
+
+			row.push(new point3d(x,y,eq.evaluate(x,y)))
+
+
+
+
 		}
 		func.push(row)
 	}
@@ -110,6 +118,10 @@ function doMovement(){
 }
 
 function step(){
+	if(document.getElementById("equation").value != equationString){
+		eq = new Equation(document.getElementById("equation").value);
+	}
+
 	canvas.context.fillStyle = "#000000";
 	canvas.context.fillRect(0,0,canvas.width,canvas.height)
 	t+=tStep;
