@@ -3,8 +3,8 @@
 I'm a multivariable calculus student who is angry there is not readily availabe online 3d grapher.
 Heres a mostly finished Online Equation Parser and Grapher.
 
-Currently the form of equation must be z = f(x,y)
-<b>ex: z=sin(x/20+15*t)*20+sin(y/20+t*15)*20</b>
+Currently the form of equation must be z = f(x,y)</br>
+<b>ex: z=sin(x/100 +15*t)*20+sin(y/20+t*15)*20</b>
 
 controls to move around equation are WASD and arrow keys
 
