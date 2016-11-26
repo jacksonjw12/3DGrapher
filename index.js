@@ -131,7 +131,7 @@ function step(){
 	if(t<-1){
 		tStep = .01
 	}
-	getFunctionPoints(200,10)
+	getFunctionPoints(200,8)
 	render();
 	doMovement();
 	
@@ -144,30 +144,37 @@ function equation1(x,y){
 }
 
 function render(){
-	canvas.context.fillStyle = "#ffffff";
-	//canvas.context.fillText(JSON.stringify(camera.rotation),10,10);
-	canvas.context.fillStyle = "#ff00ff";
 	var xAxis1 = (new point3d(-200,0,0)).project();
 	var xAxis2 = (new point3d(200,0,0)).project();
 	var yAxis1 = (new point3d(0,-200,0)).project();
 	var yAxis2 = (new point3d(0,200,0)).project();
-	//console.log(xAxis2)
+	var zAxis1 = (new point3d(0,0,-200)).project();
+	var zAxis2 = (new point3d(0,0,200)).project();
+	canvas.context.fillStyle = "#ff0000";
+
+	canvas.context.strokeStyle = "#ffffff";
 	canvas.context.beginPath();
 	canvas.context.moveTo(xAxis1.x,xAxis1.y);
 	canvas.context.lineTo(xAxis2.x,xAxis2.y);
 	canvas.context.stroke();
+
 	canvas.context.beginPath();
 	canvas.context.moveTo(yAxis1.x,yAxis1.y);
 	canvas.context.lineTo(yAxis2.x,yAxis2.y);
+	canvas.context.stroke();
+
+	canvas.context.beginPath();
+	canvas.context.moveTo(zAxis1.x,zAxis1.y);
+	canvas.context.lineTo(zAxis2.x,zAxis2.y);
 	canvas.context.stroke();
 
 
 
 	var origin = new point3d(0,0,0)
 	var originProject = origin.project();
-	canvas.context.fillRect(originProject.x,originProject.y,5,5)
+	canvas.context.fillRect(originProject.x-2.5,originProject.y-2.5,5,5)
 	//console.log(originProject)
-	canvas.context.fillStyle = "#000000";
+	canvas.context.fillStyle = "#ffffff";
 
 	for(var y = 0; y<func.length; y++){
 		for(var x = 0; x<func[0].length; x++){
@@ -226,6 +233,7 @@ function render(){
 		}
 		
 	}
+
 
 	
 
