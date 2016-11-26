@@ -2,7 +2,7 @@ function Polygon(a,b,c,d){
 		
 
 
-		this.color = shadeColor1(canvas.context.fillStyle,t*a.latestProject.x*t/25)//Math.abs(b.z-a.z)*Math.abs(c.z-d.z)*Math.abs(a.z-d.z)*Math.abs(b.z-c.z)/-400);
+		this.color = shadeColor1(canvas.context.fillStyle,t*a.latestProject.x*t/25 * Math.pow(Math.abs(b.z-a.z)*Math.abs(c.z-d.z)*Math.abs(a.z-d.z)*Math.abs(b.z-c.z), .25)/-5 * (c.z-d.z)/(Math.abs(c.z-d.z)+.1) );
 
 		this.a = a.latestProject;
 		this.b = b.latestProject;

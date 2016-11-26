@@ -125,7 +125,7 @@ function step(){
 	canvas.context.fillStyle = "#000000";
 	canvas.context.fillRect(0,0,canvas.width,canvas.height)
 	t+=tStep;
-	if(t>1.3){
+	if(t>1){
 		tStep = -.01
 	}
 	if(t<-1){
