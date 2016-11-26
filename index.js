@@ -6,7 +6,7 @@ var funcStep = 1;
 var func = [
 
 ]
-var equationString = "z=0"
+var equationString = "z=sin(x/20 +15*t)*20+sin(y/20+t*15)*20"
 var eq = new Equation(equationString);
 
 function getFunctionPoints(range, step){
