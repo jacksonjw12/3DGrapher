@@ -12,6 +12,58 @@ function Polygon(a,b,c,d){
 }
 
 
+function Equation(str){
+	//sin(x)+cos(x)*5
+	
+
+	this.setup = function(str){
+		this.str = str;
+		this.str = this.str.replace(/sin/g,"Math.sin")
+		this.str = this.str.replace(/cos/g,"Math.cos")
+		this.str = this.str.replace(/tan/g,"Math.tan")
+		this.str = this.str.replace(/pi/g,"Math.PI")
+		this.str = this.str.replace(/sqrt/g,"Math.sqrt")
+
+		for(var i = 0; i<this.str.length; i++){//Math.pow
+			if(this.str.charAt(i) == "^" && i != 0 && i != this.str.length-1){
+				//get base--basically run left until ) or operand(+-*/)
+				var startIndex = 0;
+				for(var j=i-1;j>=0;j--){
+					if(["(","+","-","*","/","^"].indexOf(this.str.charAt(j)) > -1){
+						startIndex = j+1;
+						break;
+					}
+				}
+				var endIndex = str.length;
+				for(var j=i+1;j<this.str.length;j++){
+
+					if([")","+","-","*","/","^"].indexOf(this.str.charAt(j)) > -1){
+						endIndex = j;
+						break;
+					}
+
+
+				}
+
+				var base = this.str.slice(startIndex,i)
+				var exponent = this.str.slice(i+1,endIndex)
+				this.str = this.str.slice(0,startIndex) + "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
+
+
+
+			}
+		}
+
+
+	}
+	this.setup(str);
+
+}
+
+
+
+
+
 function shadeColor1(color, percent) { 
     var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, G = (num >> 8 & 0x00FF) + amt, B = (num & 0x0000FF) + amt;
     return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
