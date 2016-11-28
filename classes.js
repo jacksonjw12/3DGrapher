@@ -89,6 +89,7 @@ function Equation(str){
 		this.str = this.str.replace(/tan/g,"Math.tan")
 		this.str = this.str.replace(/pi/g,"Math.PI")
 		this.str = this.str.replace(/sqrt/g,"Math.sqrt")
+		this.str = this.str.replace(/abs/g,"Math.abs")
 
 		for(var i = 0; i<this.str.length; i++){//Math.pow
 			if(this.str.charAt(i) == "^" && i != 0 && i != this.str.length-1){
