@@ -90,36 +90,39 @@ function Equation(str){
 		this.str = this.str.replace(/pi/g,"Math.PI")
 		this.str = this.str.replace(/sqrt/g,"Math.sqrt")
 		this.str = this.str.replace(/abs/g,"Math.abs")
-
-		for(var i = 0; i<this.str.length; i++){//Math.pow
-			if(this.str.charAt(i) == "^" && i != 0 && i != this.str.length-1){
-				//get base--basically run left until ) or operand(+-*/)
-				var startIndex = 0;
-				for(var j=i-1;j>=0;j--){
-					if(["(","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
-						startIndex = j+1;
-						break;
+		this.str = this.str.replace(/e/g,"Math.E")
+		if(this.str.indexOf("^") > -1){
+			for(var i = 0; i<this.str.length; i++){//Math.pow
+				if(this.str.charAt(i) == "^" && i != 0 && i != this.str.length-1){
+					//get base--basically run left until ) or operand(+-*/)
+					var startIndex = 0;
+					for(var j=i-1;j>=0;j--){
+						if(["(","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
+							startIndex = j+1;
+							break;
+						}
 					}
-				}
-				var endIndex = str.length;
-				for(var j=i+1;j<this.str.length;j++){
+					var endIndex = str.length;
+					for(var j=i+1;j<this.str.length;j++){
 
-					if([")","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
-						endIndex = j;
-						break;
+						if([")","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
+							endIndex = j;
+							break;
+						}
+
+
 					}
 
+					var base = this.str.slice(startIndex,i)
+					var exponent = this.str.slice(i+1,endIndex)
+					this.str = this.str.slice(0,startIndex) + "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
+
+
 
 				}
-
-				var base = this.str.slice(startIndex,i)
-				var exponent = this.str.slice(i+1,endIndex)
-				this.str = this.str.slice(0,startIndex) + "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
-
-
-
 			}
 		}
+		
 
 
 	}
