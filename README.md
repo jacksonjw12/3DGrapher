@@ -6,7 +6,7 @@ Heres a mostly finished Online Equation Parser and Grapher.
 Currently the form of equation must be z = f(x,y)</br>
 <b>ex: z=sin(x/100 +15*t)*20+sin(y/20+t*15)*20</b>
 
-controls to move around equation are WASD and arrow keys
+Controls to move around equation are WASD and arrow keys
 
 
-little easter egg: use t as a variable in order for cool function movement
+Little easter egg: use t as a variable in order for cool function movement
