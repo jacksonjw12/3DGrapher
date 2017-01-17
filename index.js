@@ -120,6 +120,7 @@ function doMovement(){
 function step(){
 	if(document.getElementById("equation").value != equationString){
 		eq = new Equation(document.getElementById("equation").value);
+		equationString = document.getElementById("equation").value;
 	}
 
 	canvas.context.fillStyle = "#000000";

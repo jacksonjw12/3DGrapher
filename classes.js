@@ -83,6 +83,7 @@ function Equation(str){
 	
 
 	this.setup = function(str){
+		console.log(123);
 		this.str = str;
 		this.str = this.str.replace(/sin/g,"Math.sin")
 		this.str = this.str.replace(/cos/g,"Math.cos")
@@ -97,11 +98,12 @@ function Equation(str){
 					//get base--basically run left until ) or operand(+-*/)
 					var startIndex = 0;
 					for(var j=i-1;j>=0;j--){
-						if(["(","+","-","*","/","^","="].indexOf(this.str.charAt(j)) > -1){
+						if(["+","-","*","/","^","=", " "].indexOf(this.str.charAt(j)) > -1){
 							startIndex = j+1;
 							break;
 						}
 					}
+
 					var endIndex = str.length;
 					for(var j=i+1;j<this.str.length;j++){
 
@@ -115,7 +117,12 @@ function Equation(str){
 
 					var base = this.str.slice(startIndex,i)
 					var exponent = this.str.slice(i+1,endIndex)
-					this.str = this.str.slice(0,startIndex) + "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
+					console.log("base: " + base);
+					console.log("exponent: " + exponent);
+					cosnoel.log(endIndex);
+
+					this.str = this.str.slice(0,startIndex) 
+					this.str+= "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
 
 
 
