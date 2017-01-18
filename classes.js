@@ -118,8 +118,8 @@ function Equation(str){
 					var base = this.str.slice(startIndex,i)
 					var exponent = this.str.slice(i+1,endIndex)
 					console.log("base: " + base);
-					console.log("exponent: " + exponent);
-					cosnoel.log(endIndex);
+					//console.log("exponent: " + exponent);
+					//cosnoel.log(endIndex);
 
 					this.str = this.str.slice(0,startIndex) 
 					this.str+= "Math.pow(" + base + ", " + exponent + ")" + this.str.slice(endIndex)
