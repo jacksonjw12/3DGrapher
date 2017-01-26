@@ -439,6 +439,9 @@ function Equation(string){
 
 			//document.getElementById("errorPlace").innerHTML = this.str;
 		}
+		if(Math.abs(z) > 1600){
+			return undefined;
+		}
 
 		return z;
 	}
